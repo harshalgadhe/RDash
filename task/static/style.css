@@ -1,0 +1,102 @@
+nav{
+    background-color: rgba(0, 0, 0, 0.463);
+    color:white;
+    margin-top:5%;
+    margin-left:20%;
+    margin-right:20%;
+    margin-bottom:-10px;
+    padding:10px;
+}
+
+.filters{
+    margin-left:20%;
+    margin-right:20%;
+    border:1px solid rgb(199, 194, 194);
+}
+
+.nav-btn {
+    background-color: green;
+}
+
+.row {
+    display: flex;
+    justify-content: center;
+    gap: 20px; 
+    margin-bottom:20px;
+    margin-top:20px;
+}
+
+.form_div {
+    background-color: pink;
+    height: 100%;
+    display: grid;
+}
+
+button {
+    padding: 10px 20px;
+    background-color: #24a0ed;
+    color: #fff;
+    border-radius: 5px;
+    cursor: pointer;
+    border:none;
+}
+
+.success {
+    color:rgb(3, 183, 3);
+}
+
+.error {
+    color: rgb(225, 27, 27);
+}
+
+button:hover {
+    background-color: #0056b3;
+} 
+
+.container {
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+}
+
+.filters{
+    margin-left:20%;
+    margin-right:20%;
+    border:1px solid rgb(199, 194, 194);
+}
+
+.nav-btn {
+    background-color: green;
+}
+
+.task-form {
+    height:450px;
+    font-size: 16px;
+}
+
+body{
+    font-family: sans-serif;
+}
+
+label {
+    text-align:left !important;
+}
+
+table {
+    margin: auto;
+    display:flex;
+    border-collapse: collapse;
+    width: 100%; 
+    place-content: center;
+}
+th {
+    border: 1px solid rgb(199, 194, 194);;
+    text-align: left;
+    padding: 8px;
+}
+
+td {
+    border: 1px solid rgb(199, 194, 194);;
+    text-align: left;
+    padding: 8px;
+}

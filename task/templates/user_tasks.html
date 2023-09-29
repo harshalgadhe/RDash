@@ -1,0 +1,54 @@
+<html>
+    {% load static %}
+    <head>
+        <title>User Tasks</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <div class="row">
+            <h3>Assigned Tasks</h3>
+        </div>
+        <div class="row">
+            <table>
+                <tr>
+                    {% for field in fields %}
+                        <th>{{field}}</th>
+                    {% endfor %}
+                </tr>
+                {% if assigned_tasks %}
+                    {% for task in assigned_tasks %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            {% for val in task %}
+                                <td>{{val}}</td>
+                            {% endfor %}
+                        </tr> 
+                    {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+        </div>
+        <div class="row">
+            <h3>Created Tasks</h3>
+        </div>
+        <div class="row">
+            <table>
+                <tr>
+                    {% for field in fields %}
+                        <th>{{field}}</th>
+                    {% endfor %}
+                </tr>
+                {% if created_tasks %}
+                    {% for task in created_tasks %}
+                        <tr>
+                            <td>{{ forloop.counter }}</td>
+                            {% for val in task %}
+                                <td>{{val}}</td>
+                            {% endfor %}
+                        </tr> 
+                    {% endfor %}
+                {% endif %}
+            </table>
+        </div>
+    </body>
+</html>

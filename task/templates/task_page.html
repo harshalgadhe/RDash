@@ -1,0 +1,95 @@
+<html>
+    {% load static %}
+    <head>
+        <title>Home Page</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+    </head>
+    <body>
+        <nav>
+            <div class="row">
+                <h2>Hi, {{username}}</h2>
+
+            </div>
+            <div class="row">
+                {% if messages %}
+                    {% for message in messages %}
+                        <h4 class="{{message.tags}}">{{message}}</h4>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="row">
+                <a href="create_task"><button type="button" class="nav-btn">Create Task</button></a>
+                <a href="user_tasks"><button type="button" class="nav-btn">Show User Tasks</button></a>
+                <a href="{% url 'logout' %}"><button type="button" class="nav-btn">Log out</button></a>
+            </div>
+        </nav>
+
+        <div class="container filters">
+            <form id="filter-form">
+                <div class="row">
+                    <div>
+                        <label>Created By:</label>
+                        <select name="created_by" id="created_by">
+                            <option value="">User</option>
+                            {% for user in users %}
+                            <option value="{{ user }}" {% if created_by == user %} selected {% endif %}>{{ user }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label>Assigned To:</label>
+                        <select name="assigned_to" id="assigned_to">
+                            <option value="">User</option>
+                            {% for user in users %}
+                                <option value="{{ user }}" {% if assigned_to == user %} selected {% endif %}>{{ user }}</option>
+        
+                            {% endfor %}
+                        </select>
+                    </div>
+                    <div>
+                        <label>Due Date:</label>
+                        <input type="date" name="due_date" id="due_date" {% if due_date %}value={{due_date}} {% endif %}>
+                    </div>
+                </div>
+                <div class="row">
+                    <button type="submit" id="apply-filter">Filter</button>
+                    <button type="submit" id="clear-filter">Clear</button>
+                </div>  
+            </form>
+            <div class="row">
+                <table>
+                    <tr>
+                        {% for field in fields %}
+                            <th>{{field}}</th>
+                        {% endfor %}
+                    </tr>
+                    {% if tasks %}
+                        {% for task in tasks %}
+                            <tr>
+                                <td>{{ forloop.counter }}</td>
+                                {% for val in task %}
+                                    <td>{{val}}</td>
+                                {% endfor %}
+                            </tr> 
+                        {% endfor %}
+                    {% endif %}
+                </table>
+            </div>
+        </div>
+        <script>
+            document.addEventListener('DOMContentLoaded', function () {
+                const clearButton = document.getElementById('clear-filter');
+                const assigned_to = document.getElementById('assigned_to');
+                const created_by = document.getElementById('created_by');
+                const due_date = document.getElementById('due_date');
+
+                clearButton.addEventListener('click', function () {
+                    // Reset all form elements to their defaults
+                    assigned_to.value = "";
+                    created_by.value = "";
+                    due_date.value = "  ";
+                });
+            });
+        </script>
+    </body>
+</html>

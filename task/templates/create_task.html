@@ -1,0 +1,50 @@
+<html>
+    <head>
+        {% load static %}
+        <title>Tasks</title>
+        <link rel="stylesheet" href="{% static 'auth.css' %}">
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+
+    </head>
+    <body>
+        <div class="task-form form-div">
+            <div class="row">
+                <h3>Create Task</h3>
+            </div>
+            <div class="row">
+                {% if messages %}
+                    {% for message in messages %}
+                        <h4 class="{{message.tags}}">{{message}}</h4>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <form method="post" action ="save_task">
+                {% csrf_token %}
+                <div class="row">
+                    <label>Title:</label>
+                    <input type="text" name="title" placeholder="Title">
+                </div>
+                <div class="row">
+                    <label>Description:</label>
+                    <input type="text" name="description" placeholder="Description">
+                </div>
+                <div class="row">
+                    <label>Due Date:</label>
+                    <input type="date" name="due_date">
+                </div>
+                <div class="row">
+                    <label for ="assignee">Assignee: </label>
+                    <select name ="assignee" multiple>
+                        <option value="">User</option>
+                        {% for user in users %}
+                            <option value="{{user}}">{{user}}</option>
+                        {% endfor %}
+                    </select>
+                </div>
+                <div class="row">
+                    <button type="submit">Create Task</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>
