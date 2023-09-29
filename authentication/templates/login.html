@@ -1,0 +1,34 @@
+<html>
+    <head>
+        {% load static %}
+        <title>Login</title>
+        <link rel="stylesheet" href="{% static 'auth.css' %}">
+
+    </head>
+    <body>
+        <div class="login-form form-div">
+            <div class="row">
+                <h3>Login Page</h3>
+            </div>
+            <div class="row">
+                {% if messages %}
+                    {% for message in messages %}
+                        <h4 class="{{message.tags}}">{{message}}</h4>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <form method="post" action ="authenticate_user">
+                {% csrf_token %}
+                <div class="row">
+                    <input type="text" name="username" placeholder="Username">
+                </div>
+                <div class="row">
+                    <input type="password" name="password" placeholder="Password">
+                </div>
+                <div class="row">
+                    <button type="submit">Login</button>
+                </div>
+            </form>
+        </div>
+    </body>
+</html>

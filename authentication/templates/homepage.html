@@ -1,0 +1,25 @@
+<html>
+    {% load static %}
+    <head>
+        <title>Home</title>
+        <link rel="stylesheet" href="{% static 'auth.css' %}">
+    </head>
+    <body>
+        <div class="form-div">
+            <div class="row">
+                <h3>Home Page</h3>
+            </div>
+            <div class = "row">
+                {% if messages %}
+                    {% for message in messages %}
+                        <h4 class="{{message.tags}}">{{message}}</h4>
+                    {% endfor %}
+                {% endif %}
+            </div>
+            <div class="row">
+                <a href="login"><button type="submit">Login</button></a>
+                <a href="signup"><button type="submit">SignUp</button></a>
+            </div>
+        </div>
+    </body>
+</html>
