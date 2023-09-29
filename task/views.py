@@ -3,13 +3,17 @@ from django.contrib.auth.decorators import login_required
 from authentication.models import User
 from .utils import get_tasks_list, get_user_assigned_tasks, get_user_created_tasks, send_email_to_user
 from django.contrib import messages
-from .constants import TASK_COLUMNS, TASK_FIELDS
+from .constants import TASK_COLUMNS
 from .models import Task
 
-# Create your views here.
 
 @login_required
 def task_page(request):
+    """
+    This function is used to display the home page for tasks which renders the task table based on filters
+    @params: Http Request
+    returns: Http Response
+    """
     assigned_to = request.GET.get("assigned_to")
     created_by = request.GET.get("created_by")
     due_date = request.GET.get("due_date")
@@ -19,6 +23,7 @@ def task_page(request):
 
     data = {}
 
+    #checking if the filters are none or empty
     if created_by not in ["",None] or assigned_to not in ["", None] or due_date not in ["", None]:
 
         query = {}
@@ -56,6 +61,12 @@ def task_page(request):
 
 @login_required
 def create_task(request):
+    """
+    This function is used to render the task creation page
+    @params: Http Request
+    returns: Http Response
+    """
+
     user_list = User.objects.values_list('username', flat=True)
     users = list()
 
@@ -67,6 +78,11 @@ def create_task(request):
     })
 
 def save_task(request):
+    """
+    User for creating new task from the data receieved through the forum
+    @params: Http Request
+    returns: Http Response
+    """
     try:
         title = request.POST.get('title')
         description = request.POST.get('description')
@@ -100,7 +116,12 @@ def save_task(request):
     
 @login_required
 def user_tasks(request):
-
+    """
+    Function is used to fetched all the tasks which are created or are assigned to the given user
+    @params: Http Request
+    returns: Http Response
+    """
+    
     user = request.user.username
 
     tasks = Task.objects.all()
