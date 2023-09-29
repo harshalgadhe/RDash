@@ -8,7 +8,3 @@ class Task(models.Model):
     assignee = models.CharField(max_length=1024)
     created_by = models.CharField(max_length=1024)
     creation_time = models.DateTimeField(auto_now_add=True)
-
-class User(models.Model):
-    name = models.CharField(max_length=128)
-    creation_time = models.DateTimeField(auto_now_add=True)
